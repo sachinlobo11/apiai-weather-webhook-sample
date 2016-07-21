@@ -62,8 +62,11 @@ def processRequest(req):
 
 def makeYqlQuery(req):
     result = req.get("result")
+    print("result:" + result)
     parameters = result.get("parameters")
+    print("parameters:" + parameters)
     city = parameters.get("workitemtype")
+    print("City:" + city)
     if city is None:
         return None
         
