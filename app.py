@@ -20,10 +20,12 @@ def webhook():
     print(json.dumps(req, indent=4))
 
     res = processRequest(req)
+    print("Request processed")
 
     res = json.dumps(res, indent=4)
-    # print(res)
+    print(res)
     r = make_response(res)
+    print(r)
     r.headers['Content-Type'] = 'application/json'
     return r
 
@@ -32,12 +34,19 @@ def processRequest(req):
     if req.get("result").get("action") != "createCheckBook":
         return {}
     baseurl = "https://ldcif6u.wdf.sap.corp:44304/sap/opu/odata/sap/ZIVRC_SRV/WorkItems("
+    print(baseurl)
     yql_query = makeYqlQuery(req)
+    print("yql_query:")
+    print(yql_query)
     if yql_query is None:
         return {}
     yql_url = baseurl + urllib.urlencode({yql_query}) + "?$format=json"
+    print(yql_query)
     result = urllib.urlopen(baseurl).read()
+    print(result)
     data = json.loads(result)
+    print("data:")
+    print(data)
     res = makeWebhookResult(data)
     return res
 
