@@ -19,18 +19,16 @@ def webhook():
 
     print("Request:")
     print(json.dumps(req, indent=4))
-    sys.stdout.flush()
-
+    
     res = processRequest(req)
     print("Request processed")
-    sys.stdout.flush()
-
+    
     res = json.dumps(res, indent=4)
     print(res)
-    sys.stdout.flush()
+    
     r = make_response(res)
     print(r)
-    sys.stdout.flush()
+    
     r.headers['Content-Type'] = 'application/json'
     return r
 
@@ -40,33 +38,33 @@ def processRequest(req):
         return {}
     baseurl = "https://ldcif6u.wdf.sap.corp:44304/sap/opu/odata/sap/ZIVRC_SRV/WorkItems("
     print(baseurl)
-    sys.stdout.flush()
+    
     yql_query = makeYqlQuery(req)
-    print("yql_query:")
+    print("yql_query1:")
     print(yql_query)
-    sys.stdout.flush()
+    
     if yql_query is None:
         return {}
     yql_url = baseurl + urllib.urlencode({yql_query}) + "?$format=json"
     print(yql_query)
-    sys.stdout.flush()
+    
     result = urllib.urlopen(baseurl).read()
     print(result)
     data = json.loads(result)
-    print("data:")
+    print("data1:")
     print(data)
-    sys.stdout.flush()
+    
     res = makeWebhookResult(data)
     return res
 
 
 def makeYqlQuery(req):
     result = req.get("result")
-    print("result:" + result)
+    print("result1:" + result)
     parameters = result.get("parameters")
-    print("parameters:" + parameters)
+    print("parameters1:" + parameters)
     city = parameters.get("workitemtype")
-    print("City:" + city)
+    print("City1:" + city)
     if city is None:
         return None
         
@@ -102,7 +100,7 @@ def makeWebhookResult(data):
    # speech = "Today in " + location.get('city') + ": " + condition.get('text') + \
    #         ", the temperature is " + condition.get('temp') + " " + units.get('temperature')
 	speech = " The Work Item No. " + result + " has been created for " + channel
-    print("Response:")
+    print("Response1:")
     print(speech)
 
     return {
