@@ -49,7 +49,7 @@ def makeYqlQuery(req):
     if city is None:
         return None
 
-   return "WORKITEM_GUID=guid'" + "0005EEE4-48CC-1ED5-B0C9-FA163EA701AC" + "')"
+   return "guid'" + "0005EEE4-48CC-1ED5-B0C9-FA163EA701AC" + "')"
    #return "select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "')"
 
 
