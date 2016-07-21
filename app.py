@@ -35,7 +35,7 @@ def processRequest(req):
     yql_query = makeYqlQuery(req)
     if yql_query is None:
         return {}
-    yql_url = baseurl + urllib.urlencode({yql_query}) + ")?$format=json"
+    yql_url = baseurl + urllib.urlencode({yql_query}) + "?$format=json"
     result = urllib.urlopen(baseurl).read()
     data = json.loads(result)
     res = makeWebhookResult(data)
@@ -49,8 +49,8 @@ def makeYqlQuery(req):
     if city is None:
         return None
 
-   return "WORKITEM_GUID=guid'0005EEE4-48CC-1ED5-B0C9-FA163EA701AC'"
-#return "select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "')"
+   return "WORKITEM_GUID=guid'" + "0005EEE4-48CC-1ED5-B0C9-FA163EA701AC" + "')"
+   #return "select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "')"
 
 
 def makeWebhookResult(data):
