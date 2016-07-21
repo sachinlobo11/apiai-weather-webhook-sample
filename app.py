@@ -31,25 +31,25 @@ def webhook():
 def processRequest(req):
     if req.get("result").get("action") != "createCheckBook":
         return {}
-    baseurl = "https://ldcif6u.wdf.sap.corp:44304/sap/opu/odata/sap/ZIVRC_SRV/WorkItems(WORKITEM_GUID=guid'0005EEE4-48CC-1ED5-B0C9-FA163EA701AC')?$format=json"
-   # yql_query = makeYqlQuery(req)
-   # if yql_query is None:
-   #     return {}
-   # yql_url = baseurl + urllib.urlencode({yql_query}) + "?$format=json"
+    baseurl = "https://ldcif6u.wdf.sap.corp:44304/sap/opu/odata/sap/ZIVRC_SRV/WorkItems"
+    yql_query = makeYqlQuery(req)
+    if yql_query is None:
+        return {}
+    yql_url = baseurl + urllib.urlencode({yql_query}) + "?$format=json"
     result = urllib.urlopen(baseurl).read()
     data = json.loads(result)
     res = makeWebhookResult(data)
     return res
 
 
-#def makeYqlQuery(req):
-#    result = req.get("result")
-#    parameters = result.get("parameters")
-#    city = parameters.get("workitemtype")
-#    if city is None:
-#        return None
-#
-#   return	"(WORKITEM_GUID=guid'0005EEE4-48CC-1ED5-B0C9-FA163EA701AC')"
+def makeYqlQuery(req):
+    result = req.get("result")
+    parameters = result.get("parameters")
+    city = parameters.get("workitemtype")
+    if city is None:
+        return None
+
+   return	"(WORKITEM_GUID=guid'0005EEE4-48CC-1ED5-B0C9-FA163EA701AC')"
 #return "select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "')"
 
 
