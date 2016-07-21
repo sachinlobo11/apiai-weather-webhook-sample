@@ -60,11 +60,14 @@ def processRequest(req):
 
 def makeYqlQuery(req):
     result = req.get("result")
-    print("result1:" + result)
+    print("result1:")
+    print(result)
     parameters = result.get("parameters")
-    print("parameters1:" + parameters)
+    print("parameters1:")
+    print(parameters)
     city = parameters.get("workitemtype")
-    print("City1:" + city)
+    print("City1:")
+    print(city)
     if city is None:
         return None
         
@@ -73,7 +76,10 @@ def makeYqlQuery(req):
 
 
 def makeWebhookResult(data):
+	print("MakeWebHookResult method")
     query = data.get('d')
+    print("Query1:")
+    print(query)
     if query is None:
         return {}
 
