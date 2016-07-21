@@ -76,7 +76,7 @@ def makeYqlQuery(req):
 
 
 def makeWebhookResult(data):
-	print("MakeWebHookResult method")
+    print("MakeWebhook method")
     query = data.get('d')
     print("Query1:")
     print(query)
