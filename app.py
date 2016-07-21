@@ -3,6 +3,7 @@
 import urllib
 import json
 import os
+import sys
 
 from flask import Flask
 from flask import request
@@ -18,14 +19,18 @@ def webhook():
 
     print("Request:")
     print(json.dumps(req, indent=4))
+    sys.stdout.flush()
 
     res = processRequest(req)
     print("Request processed")
+    sys.stdout.flush()
 
     res = json.dumps(res, indent=4)
     print(res)
+    sys.stdout.flush()
     r = make_response(res)
     print(r)
+    sys.stdout.flush()
     r.headers['Content-Type'] = 'application/json'
     return r
 
@@ -35,18 +40,22 @@ def processRequest(req):
         return {}
     baseurl = "https://ldcif6u.wdf.sap.corp:44304/sap/opu/odata/sap/ZIVRC_SRV/WorkItems("
     print(baseurl)
+    sys.stdout.flush()
     yql_query = makeYqlQuery(req)
     print("yql_query:")
     print(yql_query)
+    sys.stdout.flush()
     if yql_query is None:
         return {}
     yql_url = baseurl + urllib.urlencode({yql_query}) + "?$format=json"
     print(yql_query)
+    sys.stdout.flush()
     result = urllib.urlopen(baseurl).read()
     print(result)
     data = json.loads(result)
     print("data:")
     print(data)
+    sys.stdout.flush()
     res = makeWebhookResult(data)
     return res
 
