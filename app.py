@@ -105,13 +105,13 @@ def makeWebhookResult(data):
     print(speech)
     return {
         "fulfillmentText": speech,
-        "fulfillmentMessages": [
-         {
-          "text": [
-           "Data got"
-          ],
-         }
-        ],
+        #"fulfillmentMessages": [
+        # {
+        #  "text": [
+        #   "Data got"
+        #  ],
+      #   }
+       # ],
           # "data": data,
         # "contextOut": [],
         "source": "apiai-weather-webhook-sample"
