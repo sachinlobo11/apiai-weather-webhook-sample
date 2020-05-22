@@ -54,7 +54,7 @@ def webhook():
 
 def processRequest(req):
     print ("starting processRequest...",req.get("result").get("action"))
-    if req.get("queryResult").get("action") = "NOTyahooWeatherForecasT":
+    if req.get("queryResult").get("action") == "NOTyahooWeatherForecasT":
         return {}
     yql_url = "https://api.thingspeak.com/channels/107478/feeds.json?results=1"
     print(req)
