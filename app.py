@@ -115,7 +115,7 @@ def makeWebhookResult(data):
           # "data": data,
         # "contextOut": [],
         "source": "apiai-weather-webhook-sample"
-    }h
+    }
 
 
 @app.route('/test', methods=['GET'])
