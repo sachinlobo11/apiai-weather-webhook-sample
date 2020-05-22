@@ -53,7 +53,7 @@ def webhook():
 
 def processRequest(req):
     print ("starting processRequest...")
-    #if req.get("queryResult").get("action") != "yahooWeatherForecast":
+   # if req.get("result").get("action") != "yahooWeatherForecast":
         #return {}
     #baseurl = "https://query.yahooapis.com/v1/public/yql?"
     #yql_query = makeYqlQuery(req)
@@ -103,19 +103,7 @@ def makeWebhookResult(data):
     speech = "Today the water level of main tank is " + feeds.get('field1')
     print("Response:")
     print(speech)
-    return {
-        "fulfillmentText": speech,
-        "fulfillmentMessages": [
-         {
-          "text": [
-           "text response"
-          ],
-         }
-        ],
-          # "data": data,
-        # "contextOut": [],
-        "source": "apiai-weather-webhook-sample"
-    }
+    return field1
 
 
 @app.route('/test', methods=['GET'])
@@ -151,7 +139,6 @@ if __name__ == '__main__':
     print("Starting app on port %d" % port)
 
     app.run(debug=True, port=port, host='0.0.0.0')
-
 
 
 
