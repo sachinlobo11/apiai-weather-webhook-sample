@@ -13,6 +13,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+# weather webhook apiai
 from __future__ import print_function
 #from future.standard_library import install_aliases
 #install_aliases()
@@ -52,8 +53,8 @@ def webhook():
 
 def processRequest(req):
     print ("starting processRequest...")
-   # if req.get("result").get("action") != "yahooWeatherForecast":
-        #return {}
+     if req.get("queryResult").get("action") != "yahooWeatherForecast":
+        return {}
     #baseurl = "https://query.yahooapis.com/v1/public/yql?"
     #yql_query = makeYqlQuery(req)
    # if yql_query is None:
@@ -102,7 +103,19 @@ def makeWebhookResult(data):
     speech = "Today the water level of main tank is " + feeds.get('field1')
     print("Response:")
     print(speech)
-    return field1
+    return {
+        "fulfillmentText": speech,
+        "fulfillmentMessages": [
+         {
+          "text": [
+           "text response"
+          ],
+         }
+        ],
+          # "data": data,
+        # "contextOut": [],
+        "source": "apiai-weather-webhook-sample"
+    }
 
 
 @app.route('/test', methods=['GET'])
