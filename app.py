@@ -65,8 +65,8 @@ def processRequest(req):
     #for some the line above gives an error and hence decoding to utf-8 might help
     data = json.loads(result.decode('utf-8'))
     res = makeWebhookResult(data)
-    zap_url="https://hooks.zapier.com/hooks/catch/3174192/fdhs6r?dataq="+res
-    result1 = urlopen(zap_url).read()
+    #zap_url="https://hooks.zapier.com/hooks/catch/3174192/fdhs6r?dataq="+res
+    #result1 = urlopen(zap_url).read()
     #zapactivate=json.loads(result1)
     print ("zap activated zooooop!!")
     #print (zapactivate)
@@ -103,7 +103,19 @@ def makeWebhookResult(data):
     speech = "Today the water level of main tank is " + feeds.get('field1')
     print("Response:")
     print(speech)
-    return speech
+    return {
+        "fulfillmentText": speech,
+        "fulfillmentMessages": [
+         {
+          "text": [
+           "text response"
+          ],
+         }
+        ],
+          # "data": data,
+        # "contextOut": [],
+        "source": "apiai-weather-webhook-sample"
+    }h
 
 
 @app.route('/test', methods=['GET'])
