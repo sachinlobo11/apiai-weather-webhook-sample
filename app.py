@@ -53,7 +53,7 @@ def webhook():
 
 
 def processRequest(req):
-    print ("starting processRequest...",req.get("result").get("action"))
+    print ("starting processRequest...",req.get("queryResult").get("action"))
     if req.get("queryResult").get("action") == "NOTyahooWeatherForecasT":
         return {}
     yql_url = "https://api.thingspeak.com/channels/107478/feeds.json?results=1"
@@ -90,9 +90,15 @@ def makeWebhookResult(data):
     print(speech)
 
     return {
-        "speech": speech,
-        "displayText": speech,
-        # "data": data,
+        "fulfillmentText": speech,
+        "fulfillmentMessages": [
+         {
+          "text": [
+           "text response"
+          ],
+         }
+        ],
+          # "data": data,
         # "contextOut": [],
         "source": "apiai-weather-webhook-sample"
     }
