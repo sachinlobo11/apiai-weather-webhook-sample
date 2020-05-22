@@ -108,7 +108,7 @@ def makeWebhookResult(data):
         "fulfillmentMessages": [
          {
           "text": [
-           speech
+           "Data got"
           ],
          }
         ],
