@@ -40,7 +40,7 @@ def webhook():
 
     print("Request:")
     # commented out by Naresh
-    print(json.dumps(req, indent=4))
+    #print(json.dumps(req, indent=4))
 
     res = processRequest(req)
 
@@ -65,8 +65,8 @@ def processRequest(req):
     #for some the line above gives an error and hence decoding to utf-8 might help
     data = json.loads(result.decode('utf-8'))
     res = makeWebhookResult(data)
-    #zap_url="https://hooks.zapier.com/hooks/catch/3174192/fdhs6r?dataq="+res
-    #result1 = urlopen(zap_url).read()
+    zap_url="https://hooks.zapier.com/hooks/catch/3174192/fdhs6r?dataq="+res
+    result1 = urlopen(zap_url).read()
     #zapactivate=json.loads(result1)
     print ("zap activated zooooop!!")
     #print (zapactivate)
