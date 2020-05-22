@@ -23,6 +23,8 @@
 from urllib.parse import urlparse, urlencode
 from urllib.request import urlopen, Request
 from urllib.error import HTTPError
+from clarifai.rest import ClarifaiApp
+from clarifai.rest import Image as ClImage
 
 import json
 import os
