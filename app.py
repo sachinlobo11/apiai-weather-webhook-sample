@@ -53,8 +53,8 @@ def webhook():
 
 def processRequest(req):
     print ("starting processRequest...")
-    #if req.get("queryResult").get("action") != "yahooWeatherForecast":
-        #return {}
+    if req.get("queryResult").get("action") != "yahooWeatherForecast":
+        return {}
     #baseurl = "https://query.yahooapis.com/v1/public/yql?"
     #yql_query = makeYqlQuery(req)
    # if yql_query is None:
@@ -103,7 +103,7 @@ def makeWebhookResult(data):
     speech = "Today the water level of main tank is " + feeds.get('field1')
     print("Response:")
     print(speech)
-    return field1
+    return speech
 
 
 @app.route('/test', methods=['GET'])
