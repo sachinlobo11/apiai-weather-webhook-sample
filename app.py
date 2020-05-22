@@ -54,9 +54,11 @@ def webhook():
 
 def processRequest(req):
     print ("starting processRequest...",req.get("result").get("action"))
-    if req.get("result").get("action") != "yahooWeatherForecast":
+    if req.get("queryResult").get("action") = "NOTyahooWeatherForecasT":
         return {}
     yql_url = "https://api.thingspeak.com/channels/107478/feeds.json?results=1"
+    print(req)
+  
     result = urlopen(yql_url).read()
     #data = json.loads(result)
     #for some the line above gives an error and hence decoding to utf-8 might help
